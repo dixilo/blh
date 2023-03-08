@@ -44,7 +44,7 @@ class BLH:
         for cmd in INIT_CMD:
             _ = self._wr(cmd)
 
-    def _wr(self, data):
+    def _wr(self, data, readlen=40):
         '''Write and read'''
         assert self._connected
         assert len(data) == 35
@@ -68,7 +68,7 @@ class BLH:
         self.__w(pkt)
         self._packet_index += 1
 
-        return self.__r(40)
+        return self.__r(readlen)
 
     def set_op_number(self, num):
         '''Set operation number
@@ -138,7 +138,7 @@ class BLH:
             Speed in RPM
         '''
 
-        pkt_st = self._wr(STATUS)
+        pkt_st = self._wr(STATUS, readlen=80)
 
         return int.from_bytes(pkt_st[7:11], 'little', signed=True)
 
