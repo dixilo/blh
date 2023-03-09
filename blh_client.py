@@ -3,7 +3,7 @@
 from argparse import ArgumentParser
 import sys
 
-from ocs.matched_client import MatchedClient
+from ocs.ocs_client import OCSClient
 from ocs import OK
 
 
@@ -27,7 +27,7 @@ def main():
 
     args = parser.parse_args()
 
-    blh_client = MatchedClient('blh', args=[])
+    blh_client = OCSClient('blh', args=[])
 
     
     if args.operation == 'stop':

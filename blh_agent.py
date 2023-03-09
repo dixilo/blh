@@ -221,11 +221,8 @@ class BLHAgent:
 def main():
     '''Boot OCS agent'''
     txaio.start_logging(level=os.environ.get('LOGLEVEL', 'info'))
-
-    parser = site_config.add_arguments()
-
-    args = parser.parse_args()
-    site_config.reparse_args(args, 'BLHAgent')
+    
+    args = site_config.parse_args(agent_class='BLHAgent')
 
     agent_inst, runner = ocs_agent.init_site_agent(args)
 
